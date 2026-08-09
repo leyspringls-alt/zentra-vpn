@@ -1,0 +1,117 @@
+name: Сборка Zentra APK
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: 'Тег релиза (например v1.1.0). Пусто — только сборка без публикации'
+        required: false
+        type: string
+  push:
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+          fetch-depth: '0'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          log-accepted-android-sdk-licenses: false
+          cmdline-tools-version: '14742923'
+          packages: 'platforms;android-37.0 build-tools;37.0.0 platform-tools'
+
+      - name: Install NDK
+        run: |
+          echo "y" | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager \
+            --channel=0 \
+            --install "ndk;29.0.14206865"
+          echo "NDK_HOME=$ANDROID_HOME/ndk/29.0.14206865" >> $GITHUB_ENV
+
+      - name: Restore cached libhevtun
+        id: cache-libhevtun-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ github.workspace }}/libs
+          key: libhevtun-${{ runner.os }}-${{ hashFiles('.git/modules/hev-socks5-tunnel/HEAD') }}-${{ hashFiles('compile-hevtun.sh') }}
+
+      - name: Build libhevtun
+        if: steps.cache-libhevtun-restore.outputs.cache-hit != 'true'
+        run: bash compile-hevtun.sh
+
+      - name: Save libhevtun
+        if: steps.cache-libhevtun-restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ github.workspace }}/libs
+          key: libhevtun-${{ runner.os }}-${{ hashFiles('.git/modules/hev-socks5-tunnel/HEAD') }}-${{ hashFiles('compile-hevtun.sh') }}
+
+      - name: Copy libhevtun
+        run: cp -r ${{ github.workspace }}/libs ${{ github.workspace }}/V2rayNG/app
+
+      - name: Fetch AndroidLibXrayLite tag
+        run: |
+          pushd AndroidLibXrayLite
+          CURRENT_TAG=$(git describe --tags --abbrev=0)
+          echo "CURRENT_TAG=$CURRENT_TAG" >> $GITHUB_ENV
+          popd
+
+      - name: Download libv2ray
+        uses: robinraju/release-downloader@v1.10
+        with:
+          repository: '2dust/AndroidLibXrayLite'
+          tag: ${{ env.CURRENT_TAG }}
+          fileName: 'libv2ray.aar'
+          out-file-path: V2rayNG/app/libs/
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Decode keystore
+        id: android_keystore
+        uses: timheuer/base64-to-file@v1.2
+        with:
+          fileName: 'zentra-release.jks'
+          encodedString: ${{ secrets.ZENTRA_KEYSTORE_BASE64 }}
+
+      - name: Build signed APK
+        run: |
+          cd ${{ github.workspace }}/V2rayNG
+          echo "sdk.dir=${ANDROID_HOME}" > local.properties
+          chmod 755 gradlew
+          ./gradlew assemblePlaystoreRelease \
+            -Pandroid.injected.signing.store.file=${{ steps.android_keystore.outputs.filePath }} \
+            -Pandroid.injected.signing.store.password=${{ secrets.ZENTRA_KEYSTORE_PASSWORD }} \
+            -Pandroid.injected.signing.key.alias=${{ secrets.ZENTRA_KEY_ALIAS }} \
+            -Pandroid.injected.signing.key.password=${{ secrets.ZENTRA_KEY_PASSWORD }}
+
+      - name: Upload APK artifacts
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: zentra-apk
+          path: ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/*/release/*.apk
+
+      - name: Publish release
+        if: github.event_name == 'workflow_dispatch' && inputs.release_tag != ''
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.release_tag }}
+          name: Zentra ${{ inputs.release_tag }}
+          files: ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/*/release/*.apk
+          generate_release_notes: true

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPing">#009966</color>
+    <color name="colorPingRed">#FF0099</color>
+    <color name="colorConfigType">#f97910</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="color_fab_active">#FFB86B</color>
+    <color name="color_fab_inactive">#2A2D36</color>
+    <color name="divider_color_light">#2B2E38</color>
+    <color name="colorIndicator">@color/md_theme_primary</color>
+
+    <!-- Primary colors - main tone: black -->
+    <color name="md_theme_primary">#FFB86B</color>
+    <color name="md_theme_onPrimary">#111217</color>
+    <color name="md_theme_primaryContainer">#E0E0E0</color>
+    <color name="md_theme_onPrimaryContainer">#000000</color>
+
+    <!-- Secondary colors - accent color: orange -->
+    <color name="md_theme_secondary">#62E6C8</color>
+    <color name="md_theme_onSecondary">#FFFFFF</color>
+    <color name="md_theme_secondaryContainer">#FFE8D6</color>
+    <color name="md_theme_onSecondaryContainer">#2B1700</color>
+
+    <!-- Tertiary colors - accent color: green -->
+    <color name="md_theme_tertiary">#009966</color>
+    <color name="md_theme_onTertiary">#FFFFFF</color>
+    <color name="md_theme_tertiaryContainer">#A0F2D0</color>
+    <color name="md_theme_onTertiaryContainer">#00201A</color>
+
+    <!-- Error colors -->
+    <color name="md_theme_error">#BA1A1A</color>
+    <color name="md_theme_errorContainer">#FFDAD6</color>
+    <color name="md_theme_onError">#FFFFFF</color>
+    <color name="md_theme_onErrorContainer">#410002</color>
+
+    <!-- Background colors -->
+    <color name="md_theme_background">#0B0D12</color>
+    <color name="md_theme_onBackground">#F2F5F7</color>
+
+    <!-- Surface colors -->
+    <color name="md_theme_surface">#12151C</color>
+    <color name="md_theme_onSurface">#F2F5F7</color>
+    <color name="md_theme_surfaceVariant">#1B202A</color>
+    <color name="md_theme_onSurfaceVariant">#AEB7C4</color>
+    <color name="md_theme_inverseSurface">#313033</color>
+    <color name="md_theme_inverseOnSurface">#F4EFF4</color>
+
+    <!-- Outline colors -->
+    <color name="md_theme_outline">#79747E</color>
+    <color name="md_theme_outlineVariant">#CAC4D0</color>
+
+    <!-- Other colors -->
+    <color name="md_theme_inversePrimary">#C0C0C0</color>
+    <color name="md_theme_shadow">#000000</color>
+    <color name="md_theme_surfaceTint">#000000</color>
+    <color name="md_theme_scrim">#000000</color>
+    <color name="zentra_bg">#0B0D12</color>
+    <color name="zentra_panel">#151922</color>
+    <color name="zentra_panel_2">#202635</color>
+    <color name="zentra_accent">#FFB86B</color>
+    <color name="zentra_accent_green">#62E6C8</color>
+    <color name="zentra_text_primary">#F5F7FA</color>
+    <color name="zentra_text_secondary">#AEB7C4</color>
+</resources>

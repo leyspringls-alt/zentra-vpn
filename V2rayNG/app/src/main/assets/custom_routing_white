@@ -1,0 +1,8 @@
+[
+  {
+    "remarks": "Zentra full VPN",
+    "port": "0-65535",
+    "network": "tcp,udp",
+    "outboundTag": "proxy"
+  }
+]

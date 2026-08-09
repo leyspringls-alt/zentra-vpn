@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/title_ui_settings">
+        <CheckBoxPreference
+            android:key="pref_speed_enabled"
+            android:summary="@string/summary_pref_speed_enabled"
+            android:title="@string/title_pref_speed_enabled" />
+
+        <CheckBoxPreference
+            android:key="pref_confirm_remove"
+            android:summary="@string/summary_pref_confirm_remove"
+            android:title="@string/title_pref_confirm_remove" />
+
+        <ListPreference
+            android:defaultValue="auto"
+            android:entries="@array/language_select"
+            android:entryValues="@array/language_select_value"
+            android:key="pref_language"
+            android:summary="%s"
+            android:title="@string/title_language" />
+
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/ui_mode_night"
+            android:entryValues="@array/ui_mode_night_value"
+            android:key="pref_ui_mode_night"
+            android:summary="%s"
+            android:title="@string/title_pref_ui_mode_night" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/zentra_split_category">
+
+        <ListPreference
+            android:defaultValue="full"
+            android:entries="@array/zentra_split_mode"
+            android:entryValues="@array/zentra_split_mode_value"
+            android:key="pref_zentra_split_mode"
+            android:summary="%s"
+            android:title="@string/zentra_split_sites_title" />
+
+        <Preference
+            android:key="pref_zentra_per_app"
+            android:summary="@string/zentra_split_apps_summary"
+            android:title="@string/zentra_split_apps_title" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/title_vpn_settings">
+        <EditTextPreference
+            android:key="pref_vpn_dns"
+            android:summary="@string/summary_pref_remote_dns"
+            android:title="@string/title_pref_vpn_dns" />
+
+        <EditTextPreference
+            android:inputType="number"
+            android:key="pref_vpn_mtu"
+            android:summary="1280"
+            android:title="@string/title_pref_vpn_mtu" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/title_advanced">
+        <EditTextPreference
+            android:key="pref_delay_test_url"
+            android:summary="@string/summary_pref_delay_test_url"
+            android:title="@string/title_pref_delay_test_url" />
+
+        <EditTextPreference
+            android:key="pref_ip_api_url"
+            android:summary="@string/summary_pref_ip_api_url"
+            android:title="@string/title_pref_ip_api_url" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

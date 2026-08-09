@@ -1,0 +1,82 @@
+[
+  {
+    "remarks": "Локальная сеть — напрямую",
+    "outboundTag": "direct",
+    "ip": [
+      "geoip:private"
+    ],
+    "locked": true
+  },
+  {
+    "remarks": "Локальные домены — напрямую",
+    "outboundTag": "direct",
+    "domain": [
+      "geosite:private"
+    ],
+    "locked": true
+  },
+  {
+    "remarks": "Блокировать QUIC (udp 443)",
+    "outboundTag": "block",
+    "port": "443",
+    "network": "udp"
+  },
+  {
+    "remarks": "Торренты — напрямую",
+    "outboundTag": "direct",
+    "protocol": [
+      "bittorrent"
+    ]
+  },
+  {
+    "remarks": "Банки и госуслуги — напрямую",
+    "outboundTag": "direct",
+    "domain": [
+      "domain:gosuslugi.ru",
+      "domain:nalog.ru",
+      "domain:nalog.gov.ru",
+      "domain:sberbank.ru",
+      "domain:sber.ru",
+      "domain:sbrf.ru",
+      "domain:tinkoff.ru",
+      "domain:tbank.ru",
+      "domain:vtb.ru",
+      "domain:alfabank.ru",
+      "domain:gazprombank.ru",
+      "domain:raiffeisen.ru",
+      "domain:open.ru",
+      "domain:psbank.ru",
+      "domain:rshb.ru",
+      "domain:mkb.ru",
+      "domain:sovcombank.ru",
+      "domain:pochtabank.ru",
+      "domain:mos.ru",
+      "domain:rt.ru",
+      "domain:mts.ru",
+      "domain:megafon.ru",
+      "domain:beeline.ru",
+      "domain:tele2.ru",
+      "domain:yoomoney.ru",
+      "domain:qiwi.com",
+      "domain:mir-platform.ru",
+      "domain:nspk.ru"
+    ]
+  },
+  {
+    "remarks": "Российские сайты — напрямую",
+    "outboundTag": "direct",
+    "domain": [
+      "geosite:category-ru",
+      "regexp:.*\\.ru$",
+      "regexp:.*\\.su$",
+      "regexp:.*\\.рф$"
+    ]
+  },
+  {
+    "remarks": "Российские IP — напрямую",
+    "outboundTag": "direct",
+    "ip": [
+      "geoip:ru"
+    ]
+  }
+]
