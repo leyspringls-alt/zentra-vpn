@@ -101,7 +101,7 @@ jobs:
             -Pandroid.injected.signing.key.password=${{ secrets.ZENTRA_KEY_PASSWORD }}
 
       - name: Upload APK artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: success()
         with:
           name: zentra-apk
