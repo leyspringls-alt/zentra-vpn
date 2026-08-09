@@ -30,7 +30,13 @@ preferenceKtx = "1.2.1"
 recyclerview = "1.4.0"
 viewpager2 = "1.1.0"
 fragment = "1.8.9"
+jsch = "0.2.17"
+eddsa = "0.3.0"
+securityCrypto = "1.1.0-alpha06"
 [libraries]
+jsch = { module = "com.github.mwiede:jsch", version.ref = "jsch" }
+eddsa = { module = "net.i2p.crypto:eddsa", version.ref = "eddsa" }
+security-crypto = { module = "androidx.security:security-crypto", version.ref = "securityCrypto" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
 desugar-jdk-libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugarJdkLibs" }

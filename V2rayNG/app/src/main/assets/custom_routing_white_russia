@@ -3,7 +3,13 @@
     "remarks": "Локальная сеть — напрямую",
     "outboundTag": "direct",
     "ip": [
-      "geoip:private"
+      "10.0.0.0/8",
+      "172.16.0.0/12",
+      "192.168.0.0/16",
+      "127.0.0.0/8",
+      "169.254.0.0/16",
+      "fc00::/7",
+      "fe80::/10"
     ],
     "locked": true
   },
@@ -29,12 +35,20 @@
     ]
   },
   {
-    "remarks": "Банки и госуслуги — напрямую",
+    "remarks": "Госуслуги и госсайты — напрямую",
     "outboundTag": "direct",
     "domain": [
+      "geosite:category-gov-ru",
       "domain:gosuslugi.ru",
       "domain:nalog.ru",
       "domain:nalog.gov.ru",
+      "domain:mos.ru"
+    ]
+  },
+  {
+    "remarks": "Банки и платежи — напрямую",
+    "outboundTag": "direct",
+    "domain": [
       "domain:sberbank.ru",
       "domain:sber.ru",
       "domain:sbrf.ru",
@@ -50,16 +64,21 @@
       "domain:mkb.ru",
       "domain:sovcombank.ru",
       "domain:pochtabank.ru",
-      "domain:mos.ru",
+      "domain:yoomoney.ru",
+      "domain:qiwi.com",
+      "domain:nspk.ru",
+      "domain:mir-platform.ru"
+    ]
+  },
+  {
+    "remarks": "Операторы связи — напрямую",
+    "outboundTag": "direct",
+    "domain": [
       "domain:rt.ru",
       "domain:mts.ru",
       "domain:megafon.ru",
       "domain:beeline.ru",
-      "domain:tele2.ru",
-      "domain:yoomoney.ru",
-      "domain:qiwi.com",
-      "domain:mir-platform.ru",
-      "domain:nspk.ru"
+      "domain:tele2.ru"
     ]
   },
   {
@@ -69,7 +88,7 @@
       "geosite:category-ru",
       "regexp:.*\\.ru$",
       "regexp:.*\\.su$",
-      "regexp:.*\\.рф$"
+      "regexp:.*\\.xn--p1ai$"
     ]
   },
   {

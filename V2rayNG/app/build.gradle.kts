@@ -20,8 +20,8 @@ android {
         applicationId = "com.zentra.vpn"
         minSdk = 24
         targetSdk = 37
-        versionCode = 1100
-        versionName = "1.1.0"
+        versionCode = 1101
+        versionName = "1.1.1"
         multiDexEnabled = true
 
         val abiFilterList = (properties["ABI_FILTERS"] as? String)?.split(';')

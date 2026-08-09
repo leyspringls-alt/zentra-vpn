@@ -76,6 +76,15 @@ jobs:
           fileName: 'libv2ray.aar'
           out-file-path: V2rayNG/app/libs/
 
+      # Правила «российские сайты напрямую» ссылаются на geosite/geoip.
+      # Без этих файлов ядро не стартует, поэтому кладём их в APK при сборке.
+      - name: Download geo assets
+        run: |
+          cd ${{ github.workspace }}/V2rayNG/app/src/main/assets
+          curl -fsSL -o geosite.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat
+          curl -fsSL -o geoip.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat
+          ls -lh geosite.dat geoip.dat
+
       - name: Setup Java
         uses: actions/setup-java@v4
         with:

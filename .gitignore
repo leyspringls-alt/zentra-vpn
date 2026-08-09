@@ -68,3 +68,8 @@ Thumbs.db
 # Zentra: локальные бэкапы и мусор
 *.bak-*
 V2rayNG/.kotlin/
+
+# Geo-файлы скачиваются при сборке, в репозитории не хранятся
+V2rayNG/app/src/main/assets/geosite.dat
+V2rayNG/app/src/main/assets/geoip.dat
+V2rayNG/app/src/main/assets/geoip-only-cn-private.dat
