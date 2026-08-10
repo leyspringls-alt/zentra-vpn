@@ -30,9 +30,10 @@
                                           "userLevel":  8
                                       },
                          "sniffing":  {
-                                          "enabled":  false,
+                                          "enabled":  true,
                                           "destOverride":  [
-
+                                                              "http",
+                                                              "tls"
                                                            ]
                                       }
                      }

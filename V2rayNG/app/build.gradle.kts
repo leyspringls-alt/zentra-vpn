@@ -20,8 +20,8 @@ android {
         applicationId = "com.zentra.vpn"
         minSdk = 24
         targetSdk = 37
-        versionCode = 1101
-        versionName = "1.1.1"
+        versionCode = 1102
+        versionName = "1.1.2"
         multiDexEnabled = true
 
         val abiFilterList = (properties["ABI_FILTERS"] as? String)?.split(';')
@@ -186,6 +186,11 @@ dependencies {
     implementation(libs.mmkv.static)
     implementation(libs.gson)
     implementation(libs.okhttp)
+    implementation(libs.security.crypto)
+
+    // SSH: настройка сервера из приложения
+    implementation(libs.jsch)
+    implementation(libs.eddsa)
 
     // Reactive and Utility Libraries
     implementation(libs.kotlinx.coroutines.android)
